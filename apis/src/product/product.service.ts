@@ -6,8 +6,10 @@ import { Product } from './product.interface';
 
 @Injectable()
 export class ProductService {
-  constructor(@InjectModel('product') private readonly product: Model<Product>) { }
-  
+  constructor(
+    @InjectModel('product') private readonly product: Model<Product>,
+  ) {}
+
   async create(product: ProductDto): Promise<Product> {
     const createdCat = new this.product(product);
 
@@ -16,7 +18,7 @@ export class ProductService {
   async findAll(): Promise<Product[]> {
     const products = await this.product.find().exec();
     console.log('users >>> ', products);
-    
+
     return products;
   }
 }

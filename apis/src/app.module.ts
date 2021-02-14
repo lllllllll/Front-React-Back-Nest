@@ -7,7 +7,7 @@ import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.MONGO_URL),
+    MongooseModule.forRoot('mongodb+srv://mark8:mark8@cluster0.7crdj.mongodb.net/tests?retryWrites=true&w=majority'),
     UserModule,
     ProductModule,
   ],

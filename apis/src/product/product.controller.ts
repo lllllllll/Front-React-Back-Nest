@@ -6,9 +6,7 @@ import { ProductService } from './product.service';
 
 @Controller('product')
 export class ProductController {
-  constructor(
-    private service: ProductService,
-  ) {}
+  constructor(private service: ProductService) {}
 
   @Get()
   async getProducts(): Promise<Product[]> {
@@ -20,7 +18,7 @@ export class ProductController {
   @Post()
   async createProduct(@Body() body: ProductDto): Promise<Product> {
     console.log('Product >> Create >> ', body);
-    
+
     return await this.service.create(body);
   }
 }

@@ -6,15 +6,10 @@ export interface Product extends Document {
   description: string;
   photos: string;
   price: number;
-};
+}
 
 export interface Products {
   products: Product[];
-};
+}
 
-export const headColumn = [
-  'title',
-  'description',
-  'photos',
-  'price',
-];
+export const headColumn = ['title', 'description', 'photos', 'price'];
