@@ -3,6 +3,7 @@ import { Document } from 'mongoose';
 export interface User extends Document {
   _id: string;
   username: string;
+  password: string;
   name: string;
   lastname: string;
   email: string;
@@ -14,4 +15,4 @@ export interface Users {
   users: User[];
 }
 
-export const headColumn = ['username', 'name', 'lastname', 'birthday', 'email', 'avatar'];
+export const headColumn = ['username', 'password', 'name', 'lastname', 'birthday', 'email', 'avatar'];

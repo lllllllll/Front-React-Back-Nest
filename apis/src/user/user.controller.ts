@@ -6,14 +6,14 @@ import { UserService } from './user.service';
 @Controller('user')
 export class UserController {
   private logger(method: string, data: any) {
-    const clog =  new Logger('user');
+    const clog =  new Logger('Users');
     clog.log(`${method} = ${JSON.stringify(data)}`);
   }
   
   constructor(private service: UserService) {}
 
   @Get()
-  async getProducts(): Promise<User[]> {
+  async getAll(): Promise<User[]> {
     const data = await this.service.findAll();
     this.logger('Get', data);
 
@@ -28,25 +28,33 @@ export class UserController {
   }
 
   @Post()
-  async createProduct(@Body() body: UserDto): Promise<User> {
+  async create(@Body() body: UserDto): Promise<User> {
     const data = await this.service.create(body);
-    this.logger('Post ', body);
+    this.logger('Create ', body);
+
+    return data;
+  }
+
+  @Post()
+  async login(@Body() body: UserDto): Promise<any> {
+    const data = await this.service.login(body);
+    this.logger('Login ', body);
 
     return data;
   }
 
   @Patch('/:id')
-  async updateProduct(@Body() body: User, @Param('id') id: string): Promise<User> {
+  async update(@Body() body: User, @Param('id') id: string): Promise<User> {
     const data = await this.service.update(id, body);
-    this.logger(`Patch id ${id} `, data);
+    this.logger(`Update id ${id} `, data);
 
     return data;
   }
 
   @Delete('/:id')
-  async delProduct(@Param('id') id: string): Promise<string> {
+  async del(@Param('id') id: string): Promise<string> {
     const data = await this.service.removeById(id);
-    this.logger(`Delete id ${id} `, data);
+    this.logger(`Remove id ${id} `, data);
 
     return data;
   }

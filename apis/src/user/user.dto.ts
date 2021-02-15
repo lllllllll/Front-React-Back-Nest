@@ -3,8 +3,11 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class UserDto {
   @ApiProperty()
-  @IsNotEmpty({ message: 'กรุณาระบุ Title' })
+  @IsNotEmpty({ message: 'กรุณาระบุ Username' })
   username: string;
+
+  @ApiProperty()
+  password?: string;
 
   @ApiProperty()
   name?: string;
