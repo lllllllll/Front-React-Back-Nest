@@ -2,6 +2,7 @@ import { BadRequestException, HttpException, HttpStatus, Injectable, NotFoundExc
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcryptjs';
+import * as jwt from 'jsonwebtoken';
 import { UserDto } from './user.dto';
 import { User } from './user.interface';
 
@@ -30,9 +31,21 @@ export class UserService {
     const res = await this.user.findOne({username: data.username});
     if (!res) throw new HttpException('Not found', HttpStatus.NOT_FOUND);
     
-    console.log('>>> ', res);
-    
-    return res;
+    const check = await bcrypt.compare(data.password, res.password);
+    if (check) {
+      const { username, name, email, _id } = res;
+      const token = await jwt.sign(
+        {
+          _id,
+          username,
+        },
+        process.env.SECRET,
+        { expiresIn: '7d' },
+      );
+      return { username, name, email, token };
+    } else {
+      throw new BadRequestException();
+    }
   }
   async update(id: string, data: User): Promise<User> {
     const res = await this.user.findByIdAndUpdate({ _id: id }, data).exec();

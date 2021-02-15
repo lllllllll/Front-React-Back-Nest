@@ -4,10 +4,14 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
 import { ProductModule } from './product/product.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://mark8:mark8@cluster0.7crdj.mongodb.net/tests?retryWrites=true&w=majority'),
+    ConfigModule.forRoot({
+      expandVariables: true,
+    }),
+    MongooseModule.forRoot(process.env.MONGO_URL),
     UserModule,
     ProductModule,
   ],

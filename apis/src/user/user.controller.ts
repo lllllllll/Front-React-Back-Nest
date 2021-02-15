@@ -35,7 +35,7 @@ export class UserController {
     return data;
   }
 
-  @Post()
+  @Post('/login')
   async login(@Body() body: UserDto): Promise<any> {
     const data = await this.service.login(body);
     this.logger('Login ', body);

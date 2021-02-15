@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, Logger, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Logger, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import { AuthGuard } from 'src/shared/auth.gaurd';
 import { ProductDto } from './product.dto';
 
 import { Product } from './product.interface';
 import { ProductService } from './product.service';
 
 @Controller('product')
+@UseGuards(new AuthGuard())
 export class ProductController {
   private logger(method: string, data: any) {
     const clog =  new Logger('Product');
