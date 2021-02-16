@@ -118,11 +118,4 @@ function Table({ columns, data }) {
   )
 }
 
-export default ({columns, data=[]}) => {
-  const data1 = [
-  { name: 'Jack', age: 28, address: 'some where' },
-  { name: 'Rose', age: 36, address: 'some where' },
-];
-
-  return <Table columns={columns} data={data} />
-};
+export default ({columns, data=[]}) => <Table columns={columns} data={data} />

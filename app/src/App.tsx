@@ -43,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <AddProduct />
-      <Table columns={columnsProduct} data={getProducts} />
+      {/* <Table columns={columnsProduct} data={getProducts} /> */}
     </div>
   );
 }
