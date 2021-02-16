@@ -1,1 +1,1 @@
-// export const api = process.env.REACT_APP_API;
+export const api = import.meta.env.VITE_API
