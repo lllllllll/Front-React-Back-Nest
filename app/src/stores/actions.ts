@@ -1,6 +1,6 @@
 import { get } from './services';
 import types from './types';
 import { api } from '../shared/constants';
-// const api = 'http://localhost:3010/user';
 
-export const fetchUser = () => (dispatch: any) => get(dispatch, types.getUserAll, `${api}/user`);
+export const fetchUsers = () => (dispatch: any) => get(dispatch, types.getUsers, `${api}/user`);
+export const fetchProducts = () => (dispatch: any) => get(dispatch, types.getProducts, `${api}/product`);

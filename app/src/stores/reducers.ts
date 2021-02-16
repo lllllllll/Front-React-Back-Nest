@@ -12,11 +12,11 @@ function checkAction(state: {}, action: { type: string; }, typeCase: { success: 
   }
 };
 
-const getUser = (state = {}, action: any) => checkAction(state, action, types.getUsers);
-const getUserAll = (state = {}, action: any) => checkAction(state, action, types.getUserAll);
+const getUsers = (state = {}, action: any) => checkAction(state, action, types.getUsers);
+const getProducts = (state = {}, action: any) => checkAction(state, action, types.getProducts);
 
 const rootReducer = combineReducers({
-  getUser, getUserAll
+  getUsers, getProducts
 });
 
 export default rootReducer;

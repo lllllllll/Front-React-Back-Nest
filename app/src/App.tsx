@@ -1,21 +1,49 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser } from "./stores/actions";
-import { Table } from "./components";
+import { fetchProducts, fetchUsers } from "./stores/actions";
+import { AddProduct, Table } from "./components";
 
 function App() {
   const dispatch = useDispatch();
-  const user = useSelector(({ getUser }: any) => getUser.data);
+  const users = useSelector(({ getUsers }: any) => getUsers.data);
+  const getProducts = useSelector(({ getProducts }: any) => getProducts.data);
 
   useEffect(() => {
-    if (!user) {
-      dispatch(fetchUser());
+    if (!users) {
+      console.log(1);
+      dispatch(fetchUsers());
     }
-  }, [user]);
+  }, [users]);
+  useEffect(() => {
+    if (!getProducts) {
+      console.log(2);
+      dispatch(fetchProducts());
+    }
+  }, [getProducts]);
+
+  const columnsProduct = [
+    {
+      Header: 'Title',
+      accessor: 'title',
+    },
+    {
+      Header: 'Description',
+      accessor: 'description',
+    },
+    {
+      Header: 'Price',
+      accessor: 'price',
+    },
+    {
+      Header: 'Photos',
+      accessor: 'photos',
+    },
+  ];
 
   return (
     <div className="App">
-      <Table />
+      <AddProduct />
+      <Table columns={columnsProduct} data={getProducts} />
     </div>
   );
 }

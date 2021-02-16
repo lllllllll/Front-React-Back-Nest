@@ -6,7 +6,7 @@ import { Product } from './product.interface';
 import { ProductService } from './product.service';
 
 @Controller('product')
-@UseGuards(new AuthGuard())
+// @UseGuards(new AuthGuard())
 export class ProductController {
   private logger(method: string, data: any) {
     const clog =  new Logger('Product');
