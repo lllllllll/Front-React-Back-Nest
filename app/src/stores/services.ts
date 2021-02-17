@@ -3,11 +3,10 @@ async function checkStatus(dispatch: any, type: any, res: any) {
   if (res.status === 200 || res.status === 201) {
     return dispatch({ type: type.success, data, status: res.status });
   }
-
   return dispatch({
     type: type.failure,
     data: null,
-    status: res.status ? res.status : res,
+    status: res.status ? res.status : 0,
   });
 }
 
@@ -94,7 +93,7 @@ export const del = async (dispatch: any, type: any, url: string) => {
     const res = await fetch(`${url}`, {
       method: "DELETE",
       headers: new Headers({
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       }),
     });
 

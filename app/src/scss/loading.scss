@@ -1,0 +1,11 @@
+.box-load {
+  height: 100vh;
+  width: 100vh;
+  background: #0003;
+  position: absolute;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}

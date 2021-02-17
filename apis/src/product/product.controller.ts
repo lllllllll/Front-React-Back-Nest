@@ -47,7 +47,7 @@ export class ProductController {
   }
 
   @Delete('/:id')
-  async delProduct(@Param('id') id: string): Promise<string> {
+  async delProduct(@Param('id') id: string): Promise<any> {
     const data = await this.service.removeById(id);
     this.logger(`Delete id ${id} `, data);
 

@@ -1,25 +1,36 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts, fetchUsers } from "./stores/actions";
-import { AddProduct, Table } from "./components";
+import { fetchProductDel, fetchProducts, fetchUsers } from "./stores/actions";
+import { AddProduct, Loading, Table } from "./components";
 
 function App() {
   const dispatch = useDispatch();
   const users = useSelector(({ getUsers }: any) => getUsers.data);
   const getProducts = useSelector(({ getProducts }: any) => getProducts.data);
+  const delProduct = useSelector(({ delProduct }: any) => delProduct.data);
 
   useEffect(() => {
     if (!users) {
-      console.log(1);
       dispatch(fetchUsers());
     }
   }, [users]);
   useEffect(() => {
     if (!getProducts) {
-      console.log(2);
       dispatch(fetchProducts());
     }
   }, [getProducts]);
+
+  useEffect(() => {
+    if (delProduct) {
+      console.log(">>> Deleted ", delProduct);
+      dispatch(fetchProducts());
+    }
+  }, [delProduct]);
+
+  const onDelete = (id: string) => {
+    console.log("Delete id >> ", id);
+    dispatch(fetchProductDel(id));
+  };
 
   const columnsProduct = [
     {
@@ -43,7 +54,7 @@ function App() {
   sub_columns.push({
     id: "actions",
     accessor: "_id",
-    Cell: ({ value }) => <>
+    Cell: ({value}) => <>
       <a
         onClick={() => {
           console.log("Edit", value);
@@ -51,18 +62,14 @@ function App() {
       >
         Edit
       </a>
-      <a
-        onClick={() => {
-          console.log("Delete", value);
-        }}
-      >
-        Delete
-      </a>
+      {` | `}
+      <a onClick={() => onDelete(value)} >Delete</a>
     </>
   });
 
   return (
     <div className="App">
+      <Loading />
       <AddProduct />
       <Table columns={sub_columns} data={getProducts} />
     </div>

@@ -29,10 +29,10 @@ export class ProductService {
     if (!res) throw new NotFoundException(`Product #${id} not found`);
     return data
   }
-  async removeById(id: string): Promise<string> {
+  async removeById(id: string): Promise<any> {
     const res = await this.product.findByIdAndRemove(id);
     if (!res) throw new BadRequestException();
     
-    return id;
+    return {id};
   }
 }

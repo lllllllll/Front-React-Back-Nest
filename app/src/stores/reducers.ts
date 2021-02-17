@@ -15,11 +15,11 @@ function checkAction(state: {}, action: { type: string; }, typeCase: { success: 
 const getUsers = (state = {}, action: any) => checkAction(state, action, types.getUsers);
 const getProducts = (state = {}, action: any) => checkAction(state, action, types.getProducts);
 const addProduct = (state = {}, action: any) => checkAction(state, action, types.addProduct);
-const editProducts = (state = {}, action: any) => checkAction(state, action, types.editProduct);
-const delProducts = (state = {}, action: any) => checkAction(state, action, types.delProduct);
+const editProduct = (state = {}, action: any) => checkAction(state, action, types.editProduct);
+const delProduct = (state = {}, action: any) => checkAction(state, action, types.delProduct);
 
 const rootReducer = combineReducers({
-  getUsers, getProducts, addProduct, editProducts, delProducts
+  getUsers, getProducts, addProduct, editProduct, delProduct
 });
 
 export default rootReducer;
