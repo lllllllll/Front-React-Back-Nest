@@ -1,12 +1,12 @@
 import React from "react";
-import { useTable, useSortBy, usePagination } from 'react-table'
+import { useTable, useSortBy, usePagination } from "react-table";
 
 function Table({ columns, data }) {
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
+    page,
     prepareRow,
 
     canPreviousPage,
@@ -22,31 +22,30 @@ function Table({ columns, data }) {
     {
       columns,
       data,
-      initialState: { pageIndex: 0 },
+      initialState: { pageIndex: 0, pageSize: 2 },
     },
     useSortBy,
-    usePagination,
-  )
-  const firstPageRows = rows.slice(0, 10)
+    usePagination
+  );
 
   return (
     <>
       <table {...getTableProps()}>
         <thead>
-          {headerGroups.map(headerGroup => (
+          {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
+              {headerGroup.headers.map((column) => (
                 // Add the sorting props to control sorting. For this example
                 // we can add them into the header props
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render('Header')}
+                  {column.render("Header")}
                   {/* Add a sort direction indicator */}
                   <span>
                     {column.isSorted
                       ? column.isSortedDesc
-                        ? ' 🔽'
-                        : ' 🔼'
-                      : ''}
+                        ? " 🔽"
+                        : " 🔼"
+                      : ""}
                   </span>
                 </th>
               ))}
@@ -54,60 +53,59 @@ function Table({ columns, data }) {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {firstPageRows.map(
-            (row, i) => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map(cell => {
-                    return (
-                      <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                    )
-                  })}
-                </tr>
-              )}
-          )}
+          {page.map((row, i) => {
+            prepareRow(row);
+            return (
+              <tr {...row.getRowProps()}>
+                {row.cells.map((cell) => {
+                  return (
+                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                  );
+                })}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       <br />
       <div className="pagination">
         <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {'<<'}
-        </button>{' '}
+          {"<<"}
+        </button>{" "}
         <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {'<'}
-        </button>{' '}
+          {"<"}
+        </button>{" "}
         <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {'>'}
-        </button>{' '}
+          {">"}
+        </button>{" "}
         <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {'>>'}
-        </button>{' '}
+          {">>"}
+        </button>{" "}
         <span>
-          Page{' '}
+          Page{" "}
           <strong>
             {pageIndex + 1} of {pageOptions.length}
-          </strong>{' '}
+          </strong>{" "}
         </span>
         <span>
-          | Go to page:{' '}
+          | Go to page:{" "}
           <input
             type="number"
             defaultValue={pageIndex + 1}
-            onChange={e => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0
-              gotoPage(page)
+            onChange={(e) => {
+              const page = e.target.value ? Number(e.target.value) - 1 : 0;
+              gotoPage(page);
             }}
-            style={{ width: '100px' }}
+            style={{ width: "100px" }}
           />
-        </span>{' '}
+        </span>{" "}
         <select
           value={pageSize}
-          onChange={e => {
-            setPageSize(Number(e.target.value))
+          onChange={(e) => {
+            setPageSize(Number(e.target.value));
           }}
         >
-          {[10, 20, 30, 40, 50].map(pageSize => (
+          {[10, 20, 30, 40, 50].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>
@@ -115,7 +113,9 @@ function Table({ columns, data }) {
         </select>
       </div>
     </>
-  )
+  );
 }
 
-export default ({columns, data=[]}) => <Table columns={columns} data={data} />
+export default ({ columns, data = [] }) => (
+  <Table columns={columns} data={data} />
+);
