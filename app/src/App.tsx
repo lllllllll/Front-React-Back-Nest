@@ -39,11 +39,32 @@ function App() {
       accessor: 'photos',
     },
   ];
+  const sub_columns = columnsProduct.slice(0);
+  sub_columns.push({
+    id: "actions",
+    accessor: "_id",
+    Cell: ({ value }) => <>
+      <a
+        onClick={() => {
+          console.log("Edit", value);
+        }}
+      >
+        Edit
+      </a>
+      <a
+        onClick={() => {
+          console.log("Delete", value);
+        }}
+      >
+        Delete
+      </a>
+    </>
+  });
 
   return (
     <div className="App">
       <AddProduct />
-      <Table columns={columnsProduct} data={getProducts} />
+      <Table columns={sub_columns} data={getProducts} />
     </div>
   );
 }

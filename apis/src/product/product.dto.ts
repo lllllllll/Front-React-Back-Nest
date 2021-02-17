@@ -7,7 +7,7 @@ export class ProductDto {
   title: string;
 
   @ApiProperty()
-  @IsNotEmpty({ message: 'กรุณาระบุ Title' })
+  @IsNotEmpty({ message: 'กรุณาระบุ Expire' })
   expire: string;
 
   @IsNotEmpty({ message: 'กรุณาระบุ Description' })
