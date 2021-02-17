@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProductDel, fetchProducts, fetchUsers } from "./stores/actions";
 import { AddProduct, Loading, Table } from "./components";
 
+import './scss/app.scss';
+
 function App() {
   const dispatch = useDispatch();
   const users = useSelector(({ getUsers }: any) => getUsers.data);

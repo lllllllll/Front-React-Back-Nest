@@ -7,7 +7,7 @@ registerLocale("th", th);
 import { fetchProductAdd, fetchProducts } from "../stores/actions";
 
 import "react-datepicker/dist/react-datepicker.css";
-import "../scss/grid.scss";
+import "../scss/addProduct.scss";
 
 export default () => {
   const dispatch = useDispatch();
@@ -38,9 +38,10 @@ export default () => {
   };
 
   return (
-    <>
+    <div className="Add-product">
+      <p className="title">Add Product</p>
       <div className="row">
-        <div className="col">
+        <div className="col form-control">
           <label>Product name</label>
           <input
             className="w100"
@@ -50,7 +51,7 @@ export default () => {
             placeholder="Product name"
           />
         </div>
-        <div className="col">
+        <div className="col form-control">
           <label>Expire date</label>
           <DatePicker
             selected={data.expire}
@@ -62,7 +63,7 @@ export default () => {
             dateFormat="Pp"
           />
         </div>
-        <div className="col">
+        <div className="col form-control">
           <label>Price</label>
           <input
             className="w100"
@@ -72,7 +73,7 @@ export default () => {
             placeholder="Price"
           />
         </div>
-        <div className="col">
+        <div className="col form-control">
           <label>Photos url</label>
           <input
             className="w100"
@@ -84,7 +85,7 @@ export default () => {
         </div>
       </div>
       <div className="row">
-        <div className="col">
+        <div className="col form-control">
           <label>Description</label>
           <textarea
             className="w100"
@@ -95,10 +96,10 @@ export default () => {
         </div>
       </div>
       <div className="row">
-        <div className="col">
-          <button onClick={() => onSubmit()}>Save</button>
+        <div className="col txt-right">
+          <button className="primary" onClick={() => onSubmit()}>Save</button>
         </div>
       </div>
-    </>
+    </div>
   );
 };

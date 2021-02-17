@@ -13,9 +13,32 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+  color: $primary-color;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.txt-right {
+  text-align: right;
+}
+
 .container {
   max-width: $container;
   margin: 0 auto;
+  padding: 0 15px;
 }
 
-@import './input';
+.form-control {
+  > label {
+    display: block;
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 4px;
+  }
+}
+
+@import './form';
+@import './grid';

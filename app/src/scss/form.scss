@@ -1,6 +1,7 @@
 @import './variables';
 
 input, select, textarea, button {
+  background-color: #fff;
   border: $border;
   border-radius: $radius;
   padding: 2px 8px;
@@ -8,6 +9,18 @@ input, select, textarea, button {
   &.w100 {
     display: block;
     width: 100%;
+  }
+}
+
+button {
+  cursor: pointer;
+  &.primary {
+    border-color: transparent;
+    background-color: $primary-color;
+    color: #fff;
+  }
+  &[disabled] {
+    cursor: no-drop;
   }
 }
 
