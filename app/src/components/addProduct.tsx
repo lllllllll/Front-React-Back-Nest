@@ -55,7 +55,7 @@ export default () => {
           <label>Expire date</label>
           <DatePicker
             selected={data.expire}
-            onChange={(date) => setData({ ...data, expire: date })}
+            onChange={(date) => setData({ ...data, expire: date as Date })}
             locale="th"
             showTimeSelect
             timeFormat="p"

@@ -50,28 +50,19 @@ function App() {
       accessor: 'photos',
     },
   ];
-  const sub_columns = columnsProduct.slice(0);
-  sub_columns.push({
+  const columnsProductPAction = columnsProduct.slice(0);
+  columnsProductPAction.push({
     id: "actions",
     accessor: "_id",
-    Cell: ({value}) => <>
-      <a
-        onClick={() => {
-          console.log("Edit", value);
-        }}
-      >
-        Edit
-      </a>
-      {` | `}
+    Cell: ({value}: {value: any}) =>
       <a onClick={() => onDelete(value)} >Delete</a>
-    </>
-  });
+  } as any);
 
   return (
     <div className="App">
       <div className="container">
         <AddProduct />
-        <Table columns={sub_columns} data={getProducts} />
+        <Table columns={columnsProductPAction as any} data={getProducts} />
       </div>
       <Loading />
     </div>

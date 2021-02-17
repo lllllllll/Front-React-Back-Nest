@@ -3,14 +3,13 @@ import { useTable, useSortBy, usePagination } from "react-table";
 
 import '../scss/table.scss';
 
-function Table({ columns, data }) {
+function Table({ columns, data }: {columns: any, data: any}) {
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     page,
     prepareRow,
-
     canPreviousPage,
     canNextPage,
     pageOptions,
@@ -34,17 +33,17 @@ function Table({ columns, data }) {
     <>
       <table {...getTableProps()}>
         <thead>
-          {headerGroups.map((headerGroup) => (
+          {headerGroups.map((headerGroup: any) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
+              {headerGroup.headers.map((column: any) => (
                 // Add the sorting props to control sorting. For this example
                 // we can add them into the header props
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render("Header")}
                   {/* Add a sort direction indicator */}
                   <span>
-                    {column.isSorted
-                      ? column.isSortedDesc
+                    {column?.isSorted
+                      ? column?.isSortedDesc
                         ? " ↓"
                         : " ↑"
                       : ""}
@@ -55,11 +54,11 @@ function Table({ columns, data }) {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {page.map((row, i) => {
+          {page.map((row: any) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
+                {row.cells.map((cell: any) => {
                   return (
                     <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
                   );
@@ -118,6 +117,6 @@ function Table({ columns, data }) {
   );
 }
 
-export default ({ columns, data = [] }) => (
+export default ({ columns = [], data = [] }) => (
   <Table columns={columns} data={data} />
 );

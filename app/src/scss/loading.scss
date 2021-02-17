@@ -1,8 +1,10 @@
 .box-load {
-  height: 100vh;
-  width: 100vh;
-  background: #0003;
   position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #0003;
   z-index: 1000;
   display: flex;
   align-items: center;
