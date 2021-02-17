@@ -22,13 +22,11 @@ function App() {
 
   useEffect(() => {
     if (delProduct) {
-      console.log(">>> Deleted ", delProduct);
       dispatch(fetchProducts());
     }
   }, [delProduct]);
 
   const onDelete = (id: string) => {
-    console.log("Delete id >> ", id);
     dispatch(fetchProductDel(id));
   };
 
@@ -69,9 +67,11 @@ function App() {
 
   return (
     <div className="App">
+      <div className="container">
+        <AddProduct />
+        <Table columns={sub_columns} data={getProducts} />
+      </div>
       <Loading />
-      <AddProduct />
-      <Table columns={sub_columns} data={getProducts} />
     </div>
   );
 }

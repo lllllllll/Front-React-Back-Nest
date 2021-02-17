@@ -1,6 +1,8 @@
 import React from "react";
 import { useTable, useSortBy, usePagination } from "react-table";
 
+import '../scss/table.scss';
+
 function Table({ columns, data }) {
   const {
     getTableProps,
@@ -22,7 +24,7 @@ function Table({ columns, data }) {
     {
       columns,
       data,
-      initialState: { pageIndex: 0, pageSize: 2 },
+      initialState: { pageIndex: 0 },
     },
     useSortBy,
     usePagination
