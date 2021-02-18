@@ -14,7 +14,6 @@ FROM node:12.13-alpine as production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
-ARG MONGO_URL=mongodb+srv://mark8:mark8@cluster0.7crdj.mongodb.net/tests?retryWrites=true&w=majority
 ENV MONGO_URL=${MONGO_URL}
 ARG PORT=3000
 ENV PORT=${PORT}

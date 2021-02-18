@@ -7,7 +7,6 @@ COPY nginx.conf /usr/src/app/nginx.conf
 COPY vite.config.js /usr/src/app/vite.config.js
 
 RUN npm install --only=development
-ARG VITE_API=http://54.254.88.100:3010
 ENV VITE_API=$VITE_API
 
 RUN touch .env
