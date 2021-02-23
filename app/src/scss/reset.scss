@@ -1,0 +1,44 @@
+@import './variables';
+
+*, ::after, ::before {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: $primary-color;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.txt-right {
+  text-align: right;
+}
+
+.container {
+  max-width: $container;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.form-control {
+  > label {
+    display: block;
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 4px;
+  }
+}
+
+@import './form';
+@import './grid';

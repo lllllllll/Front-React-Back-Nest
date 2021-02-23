@@ -1,0 +1,37 @@
+@import './variables';
+
+input, select, textarea, button {
+  background-color: #fff;
+  border: $border;
+  border-radius: $radius;
+  padding: 2px 8px;
+  height: 32px;
+  &.w100 {
+    display: block;
+    width: 100%;
+  }
+}
+
+button {
+  cursor: pointer;
+  &.primary {
+    border-color: transparent;
+    background-color: $primary-color;
+    color: #fff;
+  }
+  &[disabled] {
+    cursor: no-drop;
+  }
+}
+
+textarea {
+  min-height: 100px;
+}
+
+// react-datepicker
+.react-datepicker-wrapper {
+  width: 100%;
+  input {
+    width: 100%;
+  }
+}
