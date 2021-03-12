@@ -3,30 +3,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProductDel, fetchProducts, fetchUsers } from "./stores/actions";
 import { AddProduct, Loading, Table } from "./components";
 
-import './scss/app.scss';
+import "./scss/app.scss";
 
 function App() {
   const dispatch = useDispatch();
-  const users = useSelector(({ getUsers }: any) => getUsers.data);
-  const getProducts = useSelector(({ getProducts }: any) => getProducts.data);
-  const delProduct = useSelector(({ delProduct }: any) => delProduct.data);
+  const {
+    users,
+    products,
+    delProduct,
+  } = useSelector(({ getUsers, getProducts, delProduct }: any) => ({
+    users: getUsers.data,
+    products: getProducts.data,
+    delProduct: delProduct.data,
+  }));
+  const initData = async () => {
+    if (!users) dispatch(fetchUsers())
+    if (!products) dispatch(fetchProducts())
+    if (delProduct) dispatch(fetchProducts())
+  }
 
   useEffect(() => {
-    if (!users) {
-      dispatch(fetchUsers());
-    }
-  }, [users]);
-  useEffect(() => {
-    if (!getProducts) {
-      dispatch(fetchProducts());
-    }
-  }, [getProducts]);
-
-  useEffect(() => {
-    if (delProduct) {
-      dispatch(fetchProducts());
-    }
-  }, [delProduct]);
+    initData()
+  }, []);
 
   const onDelete = (id: string) => {
     dispatch(fetchProductDel(id));
@@ -34,35 +32,36 @@ function App() {
 
   const columnsProduct = [
     {
-      Header: 'Title',
-      accessor: 'title',
+      Header: "Title",
+      accessor: "title",
     },
     {
-      Header: 'Description',
-      accessor: 'description',
+      Header: "Description",
+      accessor: "description",
     },
     {
-      Header: 'Price',
-      accessor: 'price',
+      Header: "Price",
+      accessor: "price",
     },
     {
-      Header: 'Photos',
-      accessor: 'photos',
+      Header: "Photos",
+      accessor: "photos",
     },
   ];
   const columnsProductPAction = columnsProduct.slice(0);
   columnsProductPAction.push({
     id: "actions",
     accessor: "_id",
-    Cell: ({value}: {value: any}) =>
-      <a onClick={() => onDelete(value)} >Delete</a>
+    Cell: ({ value }: { value: any }) => (
+      <a onClick={() => onDelete(value)}>Delete</a>
+    ),
   } as any);
 
   return (
     <div className="App">
       <div className="container">
         <AddProduct />
-        <Table columns={columnsProductPAction as any} data={getProducts} />
+        <Table columns={columnsProductPAction as any} data={products} />
       </div>
       <Loading />
     </div>
